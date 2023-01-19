@@ -17,9 +17,6 @@ echo "</pre>";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagnóstico CCTN</title>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
     <link rel="stylesheet" href="Resources/css/style.css">
     <script src="Resources/js/scripts.js" defer></script>
 </head>
@@ -35,7 +32,7 @@ echo "</pre>";
     </header>
 
     <main>
-        <form class="needs-validation" id="mainForm" name="mainForm" action="./" method="POST" role="form" enctype="multipart/form-data" autocomplete="on" >
+        <form class="needs-validation" id="mainForm" name="mainForm" action="./guardarDatos.php" method="POST" role="form" enctype="multipart/form-data" autocomplete="on" >
             <div class="deudor-contenedor" id="div_tipo_persona" name="div_tipo_persona" >
                 <div class="deudor-caja">
                     <div class="deudor-encabezado">
@@ -54,7 +51,7 @@ echo "</pre>";
                         </div>
                         <div class="deudor-control deudor-control__plazo">
                             <label for="plazo">Plazo (meses)</label>
-                            <select class="form-control" id="plazo" name="plazo" onchange="validarDivPersona()" required >
+                            <select class="form-control" id="plazo" name="plazo" required >
                                 <option value="" >-Escoge-</option>
                                 <option value="6" <?php if (isset($_SESSION['plazo'])) { if ($_SESSION['plazo'] == "6") { echo " selected "; } } ?> >6</option>
                                 <option value="12" <?php if (isset($_SESSION['plazo'])) { if ($_SESSION['plazo'] == "12") { echo " selected "; } } ?> >12</option>
@@ -68,7 +65,7 @@ echo "</pre>";
                         </div>
                         <div class="deudor-control deudor-control__destino-credito">
                             <label for="destino_credito">Por favor describir el rubro del plan de inversión</label>
-                            <input type="text" class="form-control" id="destino_credito" name="destino_credito" onchange="validarDivPersona()" placeholder="Escribe..." value="<?php if (isset($_SESSION['destino_credito'])) { echo $_SESSION['destino_credito']; } ?>" required >
+                            <input type="text" class="form-control" id="destino_credito" name="destino_credito" placeholder="Escribe..." value="<?php if (isset($_SESSION['destino_credito'])) { echo $_SESSION['destino_credito']; } ?>" required >
                         </div>
                     </div>
                 </div>
@@ -85,19 +82,19 @@ echo "</pre>";
                     <div class="row">
                         <div class="deudor-control" >
                             <label for="nombre_empresa">Nombre de la empresa (verifique que sea el nombre como registra en certificado de Cámara de Comercio o de Registro Único Tributario (RUT))</label>
-                            <input type="text" class="form-control" id="nombre_empresa" name="nombre_empresa" onchange="validarDivDatosEmpresariales()" placeholder="Escribe..." value="<?php if (isset($_SESSION['nombre_empresa'])) { echo $_SESSION['nombre_empresa']; } ?>" required >
+                            <input type="text" class="form-control" id="nombre_empresa" name="nombre_empresa" placeholder="Escribe..." value="<?php if (isset($_SESSION['nombre_empresa'])) { echo $_SESSION['nombre_empresa']; } ?>" required >
                         </div>
                         <div class="deudor-control" style="width: 200px;" >
                             <label for="nit">NIT</label>
-                            <input type="text" inputmode="numeric" pattern="[0-9.-]*" class="form-control" id="nit" name="nit" onchange="validarDivDatosEmpresariales()" placeholder="Escribe..." value="<?php if (isset($_SESSION['nit'])) { echo $_SESSION['nit']; } ?>" required >
+                            <input type="text" inputmode="numeric" pattern="[0-9.-]*" class="form-control" id="nit" name="nit" placeholder="Escribe..." value="<?php if (isset($_SESSION['nit'])) { echo $_SESSION['nit']; } ?>" required >
                         </div>
                         <div class="deudor-control">
                             <label for="direccion_empresa">Dirección</label>
-                            <input type="text" class="form-control" id="direccion_empresa" name="direccion_empresa" onchange="validarDivDatosEmpresariales()" placeholder="Escribe..." value="<?php if (isset($_SESSION['direccion_empresa'])) { echo $_SESSION['direccion_empresa']; } ?>" required >
+                            <input type="text" class="form-control" id="direccion_empresa" name="direccion_empresa" placeholder="Escribe..." value="<?php if (isset($_SESSION['direccion_empresa'])) { echo $_SESSION['direccion_empresa']; } ?>" required >
                         </div>
                         <div class="deudor-control campo-ciudad" style="display: flex; flex-direction: column;">
                             <label for="ciudad_empresa">Ciudad</label>
-                            <select class="form-control js-example-basic-single" id="ciudad_empresa" name="ciudad_empresa" onchange="validarDivDatosEmpresariales()" required >
+                            <select class="form-control js-example-basic-single" id="ciudad_empresa" name="ciudad_empresa" required >
                                 <option selected>-Escoge-</option>
                                 <?php
                                 for ($i = 0; $i < sizeof($listado_ciudades); $i++) {
@@ -109,15 +106,15 @@ echo "</pre>";
                         </div>
                         <div class="deudor-control" style="width: 200px;">
                             <label for="numero_contacto_empresa">Número de contacto</label>
-                            <input type="text" inputmode="numeric" pattern="[0-9.]*" class="form-control" id="numero_contacto_empresa" name="numero_contacto_empresa" maxlength="15" onchange="validarDivDatosEmpresariales()" placeholder="XXX XXX XXXX" value="<?php if (isset($_SESSION['numero_contacto_empresa'])) { echo $_SESSION['numero_contacto_empresa']; } ?>" required >
+                            <input type="text" inputmode="numeric" pattern="[0-9.]*" class="form-control" id="numero_contacto_empresa" name="numero_contacto_empresa" maxlength="15" placeholder="XXX XXX XXXX" value="<?php if (isset($_SESSION['numero_contacto_empresa'])) { echo $_SESSION['numero_contacto_empresa']; } ?>" required >
                         </div>
                         <div class="deudor-control" style="width: 230px;">
                             <label for="antiguedad_empresa">Antigüedad empresa</label>
-                            <input type="number" class="form-control" id="antiguedad_empresa" name="antiguedad_empresa" min=0 onkeypress="return event.charCode >= 48 && event.charCode <= 57" onchange="validarDivDatosEmpresariales()" placeholder="Años..." value="<?php if (isset($_SESSION['antiguedad_empresa'])) { echo $_SESSION['antiguedad_empresa']; } ?>" required >
+                            <input type="number" class="form-control" id="antiguedad_empresa" name="antiguedad_empresa" min=0 onkeypress="return event.charCode >= 48 && event.charCode <= 57" placeholder="Años..." value="<?php if (isset($_SESSION['antiguedad_empresa'])) { echo $_SESSION['antiguedad_empresa']; } ?>" required >
                         </div>
                         <div class="deudor-control" style="width: 270px">
                             <label for="migrante_retornado">¿Alguno de los socios o accionistas de la empresa es migrante venezolano o colombiano retornado?</label>
-                            <select class="form-control" id="migrante_retornado" name="migrante_retornado" onchange="validarDivPersona()" required >
+                            <select class="form-control" id="migrante_retornado" name="migrante_retornado" required >
                                 <option value="" >-Escoge-</option>
                                 <option value="si">Si</option>
                                 <option value="no">No</option>
@@ -148,17 +145,18 @@ echo "</pre>";
                         <div style="display: flex; flex-direction: column; justify-content: space-between; max-width: 250px;">
                             <p>Balance general (del año 2022 o del último año que se tenga)</p>
                             <label class="boton-adjuntar-cedula boton-adjuntar-estados-financieros" style="background-image: url(Resources/img/boton-adjuntar-cedula.svg)" id="adjuntar_estados_financieros_label" name="adjuntar_estados_financieros_label" for="adjuntar_balance_general" ><p>Balance general</p><img class="boton-adjuntar-cedula-icono-adjuntar" style="height: 70% !important; " id="adjuntar_estados_financieros_icono_adjuntar" name="adjuntar_estados_financieros_icono_adjuntar" src="Resources/img/icono-adjuntar.svg" /></label>
-                            <input id="adjuntar_balance_general" name="adjuntar_balance_general" type="file" accept="image/*, application/pdf" onclick="animacionBotonAdjuntarAlPresionar($('#adjuntar_estados_financieros_label'));" onchange="" required multiple >
+                            <input id="adjuntar_balance_general" name="adjuntar_balance_general" type="file" accept="image/*, application/pdf" onclick="animacionBotonAdjuntarAlPresionar('adjuntar_estados_financieros_label')"
+                            onchange="validarDocumentos(this, 'adjuntar_estados_financieros_label')" required >
                         </div>
                         <div style="display: flex; flex-direction: column; justify-content: space-between; max-width: 250px;">
                             <p>Estado de resultados (del año 2022 o del último año que se tenga)</p>
                             <label class="boton-adjuntar-cedula boton-adjuntar-estados-financieros" style="background-image: url(Resources/img/boton-adjuntar-cedula.svg)" id="adjuntar_estado_de_resultado_label" name="adjuntar_estado_de_resultado_label" for="adjuntar_estado_de_resultado" ><p>Estado de resultados</p><img class="boton-adjuntar-cedula-icono-adjuntar" style="height: 70% !important; " id="adjuntar_estados_resultado_icono_adjuntar" name="adjuntar_estados_resultado_icono_adjuntar" src="Resources/img/icono-adjuntar.svg" /></label>
-                            <input id="adjuntar_estado_de_resultado" name="adjuntar_estado_de_resultado" type="file" accept="image/*, application/pdf" onclick="animacionBotonAdjuntarAlPresionar($('#adjuntar_estado_de_resultado_label'));" onchange="validarEstadosFinancieros(); if( $(this).is(':invalid') == false ){ $('*').unbind('invalid'); } " oninvalid="$('*').on('invalid', function(e) { return false }); $('#modalValidacionEstadoResultado').modal('show'); document.getElementById('div_informacion_financiera_persona_juridica').scrollIntoView(); " required multiple >
+                            <input id="adjuntar_estado_de_resultado" name="adjuntar_estado_de_resultado" type="file" accept="image/*, application/pdf" onclick="animacionBotonAdjuntarAlPresionar('adjuntar_estado_de_resultado_label')" onchange="validarDocumentos(this, 'adjuntar_estado_de_resultado_label')" required >
                         </div>
                         <div style="display: flex; flex-direction: column; justify-content: space-between; max-width: 250px;">
                             <p>Declaración de renta (del año 2022 o del último año que se tenga)</p>
                             <label class="boton-adjuntar-cedula boton-adjuntar-estados-financieros" style="background-image: url(Resources/img/boton-adjuntar-cedula.svg)" id="adjuntar_declaracion_renta_label" name="adjuntar_declaracion_renta_label" for="adjuntar_declaracion_renta" ><p>Declaración de renta</p><img class="boton-adjuntar-cedula-icono-adjuntar" style="height: 70% !important; " id="adjuntar_declaracion_renta_icono_adjuntar" name="adjuntar_declaracion_renta_icono_adjuntar" src="Resources/img/icono-adjuntar.svg" /></label>
-                            <input id="adjuntar_declaracion_renta" name="adjuntar_declaracion_renta" type="file" accept="image/*, application/pdf" onclick="animacionBotonAdjuntarAlPresionar($('#adjuntar_declaracion_renta_label'));" onchange="validarEstadosFinancieros(); if( $(this).is(':invalid') == false ){ $('*').unbind('invalid'); } " oninvalid="$('*').on('invalid', function(e) { return false }); $('#modalValidacionDeclaracionRenta').modal('show'); document.getElementById('div_informacion_financiera_persona_juridica').scrollIntoView(); " required multiple >
+                            <input id="adjuntar_declaracion_renta" name="adjuntar_declaracion_renta" type="file" accept="image/*, application/pdf" onclick="animacionBotonAdjuntarAlPresionar('adjuntar_declaracion_renta_label')" onchange="validarDocumentos(this, 'adjuntar_declaracion_renta_label')" required >
                         </div>
                     </div>
                 </div>
