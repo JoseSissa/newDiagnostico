@@ -170,7 +170,7 @@
                         </p>
                     </div>
                     <div class="row d-flex justify-content-center" style="padding-top: 4px; text-align: center;">
-                        <a onclick="mostrarModalTerminosCondiciones()"><u>Ver términos y condiciones</u></a>
+                        <a onclick="mostrarModalTerminosCondiciones('modalTerminosYCondiciones')"><u>Ver términos y condiciones</u></a>
                     </div>
                     <div class="row d-flex justify-content-center centrar-boton" style="padding-top: 20px">
                         <input id="terminos_condiciones" name="terminos_condiciones" type="hidden" value="no-acepto">
@@ -196,7 +196,7 @@
                         </p>
                     </div>
                     <div class="row d-flex justify-content-center" style="padding-top: 4px; text-align: center;">
-                        <a onclick="$('#modalConsultaCentrales').modal('toggle');"><u>Ver términos y condiciones</u></a>
+                        <a onclick="mostrarModalTerminosCondiciones('modalConsultaCentrales')"><u>Ver términos y condiciones</u></a>
                     </div>
                     <div class="row d-flex centrales-riesgo-botones" style="justify-content: space-evenly; padding-top: 20px">
                         <input id="consulta_centrales_de_riesgo" name="consulta_centrales_de_riesgo" type="hidden" value="">
@@ -246,7 +246,7 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button class="boton-formulario active" type="button" data-dismiss="modal" onclick="mostrarModalTerminosCondiciones()">Regresar</button>
+                        <button class="boton-formulario active" type="button" data-dismiss="modal" onclick="mostrarModalTerminosCondiciones('modalTerminosYCondiciones')">Regresar</button>
                     </div>
                 </div>
             </div>
@@ -274,7 +274,7 @@
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <button class="boton-formulario active" type="button" data-dismiss="modal" >Regresar</button>
+                        <button class="boton-formulario active" type="button" data-dismiss="modal" onclick="mostrarModalTerminosCondiciones('modalConsultaCentrales')" >Regresar</button>
                     </div>
                 </div>
             </div>
