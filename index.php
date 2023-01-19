@@ -1,3 +1,14 @@
+<?php 
+
+include './connection.php';
+$connection = new Connection();
+$listado_ciudades = $connection->obtDatos();
+// echo gettype($listado_ciudades);
+echo "<pre>";
+// var_dump($listado_ciudades);
+echo "</pre>";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +17,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagnóstico CCTN</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <link rel="stylesheet" href="Resources/css/style.css">
     <script src="Resources/js/scripts.js" defer></script>
 </head>
@@ -21,7 +35,7 @@
     </header>
 
     <main>
-        <form class="" id="" name="" action="./" method="POST" role="form" enctype="multipart/form-data" autocomplete="on" >
+        <form class="needs-validation" id="mainForm" name="mainForm" action="./" method="POST" role="form" enctype="multipart/form-data" autocomplete="on" >
             <div class="deudor-contenedor" id="div_tipo_persona" name="div_tipo_persona" >
                 <div class="deudor-caja">
                     <div class="deudor-encabezado">
@@ -34,7 +48,7 @@
                         <div class="deudor-control deudor-control__valor-solicitado">
                             <label for="valor_solicitado">Valor</label>
                             <div class="input-icon">
-                                <input type="text" inputmode="numeric" pattern="[0-9.]*" class="form-control" id="valor_solicitado" name="valor_solicitado" oninput="validarValorSolicitado(this)" style="padding-left: 25px;" onchange="validarDivPersona()" onfocusout="mensajeValorSolicitado(this)" placeholder="Escribe..." value="<?php if (isset($_SESSION['valor_solicitado'])) { echo $_SESSION['valor_solicitado']; } ?>" required >
+                                <input type="number" inputmode="numeric" pattern="[0-9.]*" class="form-control" id="valor_solicitado" name="valor_solicitado"  style="padding-left: 25px;" onchange="validar(this)" onfocusout="validar(this)" placeholder="Escribe..." required >
                                 <i>$</i>
                             </div>
                         </div>
@@ -86,11 +100,10 @@
                             <select class="form-control js-example-basic-single" id="ciudad_empresa" name="ciudad_empresa" onchange="validarDivDatosEmpresariales()" required >
                                 <option selected>-Escoge-</option>
                                 <?php
-                                // for ($i = 0; $i < sizeof($listado_ciudades); $i++) {
-                                //     echo '<option value="' . $listado_ciudades[$i]['codigo'] . '" ';
-                                //     if (isset($_SESSION['ciudad_empresa'])) { if ($_SESSION['ciudad_empresa'] == $listado_ciudades[$i]['codigo']) { echo " selected "; } }
-                                //     echo ' >' . mb_convert_case($listado_ciudades[$i]['ciudad'], MB_CASE_TITLE, "UTF-8") . ' (' . mb_convert_case($listado_ciudades[$i]['departamento'], MB_CASE_TITLE, "UTF-8") . ')</option>';
-                                // }
+                                for ($i = 0; $i < sizeof($listado_ciudades); $i++) {
+                                    echo '<option value="' . $listado_ciudades[$i]['codigo'] . '" ';
+                                    echo ' >' . mb_convert_case($listado_ciudades[$i]['ciudad'], MB_CASE_TITLE, "UTF-8") . ' (' . mb_convert_case($listado_ciudades[$i]['departamento'], MB_CASE_TITLE, "UTF-8") . ')</option>';
+                                }
                                 ?>
                             </select>
                         </div>
@@ -174,7 +187,7 @@
                     </div>
                     <div class="row d-flex justify-content-center centrar-boton" style="padding-top: 20px">
                         <input id="terminos_condiciones" name="terminos_condiciones" type="hidden" value="no-acepto">
-                        <button id="btnAutorizacion" name="btnAutorizacion" class="boton-formulario" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacion(this)" >Acepto</button>
+                        <button id="btnAutorizacion" name="btnAutorizacion" class="boton-formulario" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacion(this)">Acepto</button>
                     </div>
                 </div>
             </div>
@@ -200,10 +213,10 @@
                     </div>
                     <div class="row d-flex centrales-riesgo-botones" style="justify-content: space-evenly; padding-top: 20px">
                         <input id="consulta_centrales_de_riesgo" name="consulta_centrales_de_riesgo" type="hidden" value="">
-                        <button id="btnSiCentralesRiesgo" name="btnSiCentralesRiesgo" class="boton-formulario" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacionCentrales(this)">Acepto 
+                        <button id="btnSiCentralesRiesgo" name="btnSiCentralesRiesgo" class="boton-formulario" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacionCentrales(this, 'btnNoCentralesRiesgo')">Acepto 
                         <!-- <img src="Resources/img/complete-gray.svg" alt="check"> -->
                         </button>
-                        <button id="btnNoCentralesRiesgo" name="btnNoCentralesRiesgo" class="boton-formulario" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacionCentrales(this)">No acepto 
+                        <button id="btnNoCentralesRiesgo" name="btnNoCentralesRiesgo" class="boton-formulario" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacionCentrales(this, 'btnSiCentralesRiesgo')">No acepto 
                         <!-- <img src="Resources/img/wrong-cancel.svg" alt="check"> -->
                         </button>
                     </div>
@@ -222,17 +235,17 @@
 
         <!-- Modal para los términos y condiciones -->
         <div class="modal fade hide" style="overflow-y: scroll; -webkit-overflow-scrolling: touch; " data-backdrop="static" data-keyboard="false" id="modalTerminosYCondiciones" tabindex="-1" role="dialog" aria-labelledby="modalTitulo" aria-hidden="true">
-            <div class="modal-dialog" style="max-width: 900px !important" role="document">
+            <div class="modal-dialog" style="max-width: 900px !important; padding: 0 8px;" role="document">
                 <div class="modal-content" style="max-width: 900px" >
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitulo">Términos y condiciones</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" onclick="mostrarModalTerminosCondiciones('modalTerminosYCondiciones')" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <p>
-                            <b>Protección de Datos Personales.</b> Yo <b><span id="proteccion_datos_nombre" name="proteccion_datos_nombre">NOMBRE Y</span> <span id="proteccion_datos_primer_apellido" name="proteccion_datos_primer_apellido">APELLIDO SOLICITANTE</span> <span id="proteccion_datos_segundo_apellido" name="proteccion_datos_segundo_apellido"></span></b>
+                            <b>Protección de Datos Personales.</b> Yo <b><span id="proteccion_datos_nombre" name="proteccion_datos_nombre"></span> <span id="proteccion_datos_primer_apellido" name="proteccion_datos_primer_apellido"></span> <span id="proteccion_datos_segundo_apellido" name="proteccion_datos_segundo_apellido"></span></b>
                             en mi calidad de titular de la información, por medio de la presente, manifiesto mi consentimiento previo, libre, expreso e informado para que
                             Vanka S.A.S. (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio) o a quien represente sus derechos para tratar, consultar, solicitar, procesar, reportar y divulgar los datos personales por mi
                             suministrados, conforme su Política de Tratamiento de Datos Personales y finalidades indicadas. De igual forma, manifiesto que Vanka S.A.S. (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio), de
@@ -253,17 +266,17 @@
         </div>
         <!-- Modal Consulta en centrales de riesgo -->
         <div class="modal fade hide" style="overflow-y: scroll; -webkit-overflow-scrolling: touch; " data-backdrop="static" data-keyboard="false" id="modalConsultaCentrales" tabindex="-1" role="dialog" aria-labelledby="modalTitulo" aria-hidden="true">
-            <div class="modal-dialog" style="max-width: 900px !important" role="document">
+            <div class="modal-dialog" style="max-width: 900px !important; padding: 0 8px;" role="document">
                 <div class="modal-content" style="max-width: 900px" >
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitulo">Consulta en centrales de riesgo</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" onclick="mostrarModalTerminosCondiciones('modalConsultaCentrales')" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <p>
-                            <b>Consulta en centrales de riesgo.</b> Yo <b><span id="consulta_centrales_nombre" name="consulta_centrales_nombre">NOMBRE Y</span> <span id="consulta_centrales_primer_apellido" name="consulta_centrales_primer_apellido">APELLIDO SOLICITANTE</span> <span id="consulta_centrales_segundo_apellido" name="consulta_centrales_segundo_apellido"></span></b>
+                            <b>Consulta en centrales de riesgo.</b> Yo <b><span id="consulta_centrales_nombre" name="consulta_centrales_nombre"></span> <span id="consulta_centrales_primer_apellido" name="consulta_centrales_primer_apellido"></span> <span id="consulta_centrales_segundo_apellido" name="consulta_centrales_segundo_apellido"></span></b>
                             autorizo, de forma expresa, informada y consentida a Vanka S.A.S. (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio) o a quien represente sus derechos, para que adelante las consultas que sean
                             necesarias en las bases o bancos de datos propias o de centrales de riesgo (desacredito, cifin, entre otras y similares) relativas a mi
                             comportamiento comercial, crediticio y el manejo de los diferentes productos de las entidades financieras, solidarias, del sector real y
@@ -279,6 +292,29 @@
                 </div>
             </div>
         </div>
+        <!-- Modal para los mensajes -->
+        <div class="modal fade hide" id="modalParalosMensajes">
+            <div class="modal-dialog" style="max-width: 500px !important;" role="document">
+                <div class="modal-content" style="max-width: 500px" >
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitulo">Aviso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="ocultarModalMensajes(this, ' ')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body modal-valor-solicitado-body" style="overflow-y: hidden; padding: 8px 16px">
+                        <p style="margin: 0" id="texto-dinamico">
+                            Monto mínimo de 3'000.000 COP
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="boton-formulario active" type="button" data-dismiss="modal" onclick="ocultarModalMensajes(this, ' ')">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </main>
 
     <footer>
