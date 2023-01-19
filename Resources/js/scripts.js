@@ -23,6 +23,7 @@ function validarBotonAutorizacionCentrales(elem, id) {
 }
 
 function verificarDatosFormulario(event) {
+    document.getElementById('btnSiguiente').setAttribute('disabled', 'true')
     event.preventDefault()
     const dataForm = document.getElementById('mainForm')
     const data = Object.fromEntries(
@@ -36,6 +37,7 @@ function verificarDatosFormulario(event) {
                 controlFormulario++
                 const mensaje = 'Por favor, agrege una ciudad válida.'
                 mostrarModalMensajes(mensaje)
+                document.getElementById('btnSiguiente').removeAttribute('disabled')
                 break;
             }
         }else if(elem === 'migrante-retornado') {
@@ -43,6 +45,7 @@ function verificarDatosFormulario(event) {
                 controlFormulario++
                 const mensaje = 'El campo: ¿Alguno de los socios o accionistas de la empresa es migrante venezolano o colombiano retornado? se encuentra vacío.'
                 mostrarModalMensajes(mensaje)
+                document.getElementById('btnSiguiente').removeAttribute('disabled')
                 break;
             }
         }else if(elem === 'adjuntar_balance_general') {
@@ -50,6 +53,7 @@ function verificarDatosFormulario(event) {
                 controlFormulario++
                 const mensaje = 'Por favor, adjunte archivo de Balance general.'
                 mostrarModalMensajes(mensaje)
+                document.getElementById('btnSiguiente').removeAttribute('disabled')
                 break;
             }
         }else if(elem === 'adjuntar_estado_de_resultado') {
@@ -57,6 +61,7 @@ function verificarDatosFormulario(event) {
                 controlFormulario++
                 const mensaje = 'Por favor, adjunte archivo de Estado de resultado.'
                 mostrarModalMensajes(mensaje)
+                document.getElementById('btnSiguiente').removeAttribute('disabled')
                 break;
             }
         }else if(elem === 'adjuntar_declaracion_renta') {
@@ -64,6 +69,7 @@ function verificarDatosFormulario(event) {
                 controlFormulario++
                 const mensaje = 'Por favor, adjunte archivo de Declaración de renta.'
                 mostrarModalMensajes(mensaje)
+                document.getElementById('btnSiguiente').removeAttribute('disabled')
                 break;
             }
         }else if(elem === 'terminos_condiciones') {
@@ -71,6 +77,7 @@ function verificarDatosFormulario(event) {
                 controlFormulario++
                 const mensaje = 'Por favor, acepte los términos y condiciones para realizar el registro.'
                 mostrarModalMensajes(mensaje)
+                document.getElementById('btnSiguiente').removeAttribute('disabled')
                 break;
             }
         }else if(elem === 'consulta_centrales_de_riesgo') {
@@ -78,6 +85,7 @@ function verificarDatosFormulario(event) {
                 controlFormulario++
                 const mensaje = 'Por favor, llene el campo Consulta en centrales de riesgo.'
                 mostrarModalMensajes(mensaje)
+                document.getElementById('btnSiguiente').removeAttribute('disabled')
                 break;
             }
         }else {
@@ -85,6 +93,7 @@ function verificarDatosFormulario(event) {
                 controlFormulario++
                 const mensaje = 'Por favor, llena todos los campos'
                 mostrarModalMensajes(mensaje)
+                document.getElementById('btnSiguiente').removeAttribute('disabled')
                 break;
             }
         }

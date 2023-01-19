@@ -22,23 +22,12 @@ $numero_contacto_empresa = $_POST['numero_contacto_empresa'];
 $antiguedad_empresa = $_POST['antiguedad_empresa'];
 $migrante_retornado = $_POST['migrante_retornado'];
 $adjuntar_balance_general = "Probando los archivos 1";
-echo "<pre>";
-print_r($_FILES['adjuntar_balance_general']);
-echo "</pre>";
-$adjuntar_estado_de_resultado = "Probando los archivos 2";
-echo "<pre>";
-print_r($_FILES['adjuntar_estado_de_resultado']);
-echo "</pre>";
-$adjuntar_declaracion_renta = "Probando los archivos 3";
-echo "<pre>";
-print_r($_FILES['adjuntar_declaracion_renta']);
-echo "</pre>";
 $consulta_centrales_de_riesgo = $_POST['consulta_centrales_de_riesgo'];
 
-if($valor_solicitado === "") {
-    header("Status: 301 Moved Permanently");
-    header("Location: https://localhost/newDiagnostico/si.html");
-}
+// if($valor_solicitado === "") {
+//     header("Status: 301 Moved Permanently");
+//     header("Location: https://localhost/newDiagnostico/si.html");
+// }
 
 $con = mysqli_connect($server, $user, $password, $database);
 
@@ -83,8 +72,11 @@ if ($uploadOk == 0){
 
 $query = "INSERT INTO empresas (id, valor_solicitado, plazo, destino_credito, nombre_empresa, nit, direccion_empresa, ciudad_empresa, numero_contacto_empresa, antiguedad_empresa, migrante_retornado, adjuntar_balance_general, adjuntar_estado_de_resultado, adjuntar_declaracion_renta, consulta_centrales_de_riesgo) VALUES (null, '$valor_solicitado', '$plazo', '$destino_credito', '$nombre_empresa', '$nit', '$direccion_empresa', '$ciudad_empresa', '$numero_contacto_empresa', '$antiguedad_empresa', '$migrante_retornado', '$locationBG', '$locationER', '$locationDR', '$consulta_centrales_de_riesgo')";
 
-// $datos = mysqli_query($con, $query);
+$datos = mysqli_query($con, $query);
 
-// echo $datos;
+if($datos) {
+    header("Status: 301 Moved Permanently");
+    header("Location: https://localhost/diagnosticoCCTN/confirmacion.html");
+}
 
 ?>
