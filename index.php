@@ -85,11 +85,11 @@
                             <select class="form-control js-example-basic-single" id="ciudad_empresa" name="ciudad_empresa" onchange="validarDivDatosEmpresariales()" required >
                                 <option selected>-Escoge-</option>
                                 <?php
-                                for ($i = 0; $i < sizeof($listado_ciudades); $i++) {
-                                    echo '<option value="' . $listado_ciudades[$i]['codigo'] . '" ';
-                                    if (isset($_SESSION['ciudad_empresa'])) { if ($_SESSION['ciudad_empresa'] == $listado_ciudades[$i]['codigo']) { echo " selected "; } }
-                                    echo ' >' . mb_convert_case($listado_ciudades[$i]['ciudad'], MB_CASE_TITLE, "UTF-8") . ' (' . mb_convert_case($listado_ciudades[$i]['departamento'], MB_CASE_TITLE, "UTF-8") . ')</option>';
-                                }
+                                // for ($i = 0; $i < sizeof($listado_ciudades); $i++) {
+                                //     echo '<option value="' . $listado_ciudades[$i]['codigo'] . '" ';
+                                //     if (isset($_SESSION['ciudad_empresa'])) { if ($_SESSION['ciudad_empresa'] == $listado_ciudades[$i]['codigo']) { echo " selected "; } }
+                                //     echo ' >' . mb_convert_case($listado_ciudades[$i]['ciudad'], MB_CASE_TITLE, "UTF-8") . ' (' . mb_convert_case($listado_ciudades[$i]['departamento'], MB_CASE_TITLE, "UTF-8") . ')</option>';
+                                // }
                                 ?>
                             </select>
                         </div>
@@ -113,24 +113,24 @@
                 </div>
             </div>
 
-            <div class="deudor-contenedor" id="" name="" >
+            <div class="deudor-contenedor" id="div_informacion_financiera_persona_juridica" name="div_informacion_financiera_persona_juridica" >
                 <div class="deudor-encabezado">
                     <h4 class="deudor-encabezado__titulo">INFORMACIÓN FINANCIERA</h4>
                     <div class="deudor-seccion-icono">
                         <img src="Resources/img/icono-informacion-financiera.svg" />
                     </div>
-                    <div class="deudor-seccion-listo-con-encabezado" id="div_informacion_financiera_persona_juridica_icono_pendiente" name="div_informacion_financiera_persona_juridica_icono_pendiente" >
+                    <!-- <div class="deudor-seccion-listo-con-encabezado" id="div_informacion_financiera_persona_juridica_icono_pendiente" name="div_informacion_financiera_persona_juridica_icono_pendiente" >
                         <img src="Resources/img/pending.svg" />
                     </div>
                     <div class="deudor-seccion-listo-con-encabezado" id="div_informacion_financiera_persona_juridica_icono_completo" name="div_informacion_financiera_persona_juridica_icono_completo">
                         <img src="Resources/img/complete.svg" />
-                    </div>
+                    </div> -->
                 </div>
                 <div class="deudor-caja">
                     <div class="row d-flex justify-content-center" style="padding-top: 25px; padding: 25px 30px 0 30px; margin-bottom: 30px;">
                         <span>Adjunta los siguientes documentos (En formato de excel de preferencia):</span>
                     </div>
-                    <div class="row d-flex" style="padding-top: 25px; justify-content: space-evenly;">
+                    <div class="row d-flex" style="padding: 25px 16px 0; justify-content: space-evenly; align-items: center;">
                         <div style="display: flex; flex-direction: column; justify-content: space-between; max-width: 250px;">
                             <p>Balance general (del año 2022 o del último año que se tenga)</p>
                             <label class="boton-adjuntar-cedula boton-adjuntar-estados-financieros" style="background-image: url(Resources/img/boton-adjuntar-cedula.svg)" id="adjuntar_estados_financieros_label" name="adjuntar_estados_financieros_label" for="adjuntar_balance_general" ><p>Balance general</p><img class="boton-adjuntar-cedula-icono-adjuntar" style="height: 70% !important; " id="adjuntar_estados_financieros_icono_adjuntar" name="adjuntar_estados_financieros_icono_adjuntar" src="Resources/img/icono-adjuntar.svg" /></label>
@@ -168,10 +168,10 @@
                         Yo en mi calidad de titular de la información, por medio de la presente, manifiesto mi consentimiento previo, libre, expreso e informado para que Vanka S.A.S. (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio) o a quien represente sus derechos para tratar, consultar, solicitar, procesar, reportar y divulgar los datos personales por mi suministrados, conforme su Política de Tratamiento de Datos Personales y finalidades indicadas.
                         </p>
                     </div>
-                    <div class="row d-flex justify-content-center" style="padding-top: 4px">
+                    <div class="row d-flex justify-content-center" style="padding-top: 4px; text-align: center;">
                         <a onclick="$('#modalTerminosYCondiciones').modal('toggle');"><u>Ver términos y condiciones</u></a>
                     </div>
-                    <div class="row d-flex justify-content-center" style="padding-top: 20px">
+                    <div class="row d-flex justify-content-center centrar-boton" style="padding-top: 20px">
                         <input id="terminos_condiciones" name="terminos_condiciones" type="hidden" value="no-acepto">
                         <button id="btnAutorizacion" name="btnAutorizacion" class="boton-formulario" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacion(this)" >Acepto</button>
                     </div>
@@ -184,9 +184,9 @@
                     <div class="deudor-seccion-icono">
                         <img src="Resources/img/icono-terminos-condiciones.svg" />
                     </div>
-                    <div class="deudor-seccion-listo-con-encabezado" id="div_centrales_riesgo_icono_pendiente" name="div_centrales_riesgo_icono_pendiente" >
+                    <!-- <div class="deudor-seccion-listo-con-encabezado" id="div_centrales_riesgo_icono_pendiente" name="div_centrales_riesgo_icono_pendiente" >
                         <img src="Resources/img/pending.svg" />
-                    </div>
+                    </div> -->
                 </div>
                 <div class="deudor-caja" style="margin: 20px 0 0 0 !important" >
                     <div class="row" style="text-align: justify !important; padding: 0px 30px">
@@ -194,13 +194,17 @@
                         Por medio del presente escrito autorizo a Vanka SAS (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio) o a quien represente sus derechos, para que adelante la consulta en relación al comportamiento financiero en las bases de datos propias o de centrales de riesgo (Datacrédito, Cifin, entre otras similares).
                         </p>
                     </div>
-                    <div class="row d-flex justify-content-center" style="padding-top: 4px">
+                    <div class="row d-flex justify-content-center" style="padding-top: 4px; text-align: center;">
                         <a onclick="$('#modalConsultaCentrales').modal('toggle');"><u>Ver términos y condiciones</u></a>
                     </div>
-                    <div class="row d-flex" style="justify-content: space-evenly; padding-top: 20px">
+                    <div class="row d-flex centrales-riesgo-botones" style="justify-content: space-evenly; padding-top: 20px">
                         <input id="consulta_centrales_de_riesgo" name="consulta_centrales_de_riesgo" type="hidden" value="">
-                        <button id="btnSiCentralesRiesgo" name="btnSiCentralesRiesgo" class="boton-terminos" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacionCentrales(this)"><img src="Resources/img/complete-gray.svg" alt="check"></button>
-                        <button id="btnNoCentralesRiesgo" name="btnNoCentralesRiesgo" class="boton-terminos" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacionCentrales(this)"><img src="Resources/img/wrong-cancel.svg" alt="check"></button>
+                        <button id="btnSiCentralesRiesgo" name="btnSiCentralesRiesgo" class="boton-formulario" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacionCentrales(this)">Acepto 
+                        <!-- <img src="Resources/img/complete-gray.svg" alt="check"> -->
+                        </button>
+                        <button id="btnNoCentralesRiesgo" name="btnNoCentralesRiesgo" class="boton-formulario" style="margin-bottom: 20px" type="button" onclick="validarBotonAutorizacionCentrales(this)">No acepto 
+                        <!-- <img src="Resources/img/wrong-cancel.svg" alt="check"> -->
+                        </button>
                     </div>
                 </div>
             </div>
