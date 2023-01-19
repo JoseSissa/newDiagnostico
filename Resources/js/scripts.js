@@ -91,7 +91,7 @@ function verificarDatosFormulario(event) {
         }
     }
     controlFormulario === 0 
-        ? console.log(`Se puede enviar ${controlFormulario}`) 
+        ? document.getElementById("mainForm").submit()
         : console.log(`No se puede enviar ${controlFormulario}`);
 
         // $.ajax({
@@ -129,9 +129,74 @@ function validar(elem) {
         modalParaLosMensajes.classList.replace('hide', 'show')
     }
 }
+function animacionBotonAdjuntarAlPresionar(elem) {
+    document.getElementById(elem).classList.add('boton-adjuntar-presionado')
+    setTimeout(() => {
+        document.getElementById(elem).classList.remove('boton-adjuntar-presionado')
+    }, 200)
+}
 
-// function validarValorSolicitado(elem) {
-//     let val = elem.value.replace(/\./g,"");
-//     console.log({val});
-//     elem.value = val
-// }
+function validarDocumentos(elem, id) {
+    console.log(elem.files);
+    const label = document.getElementById(id)
+    if(elem.files.length) {
+        if (elem.files[0].size > 26214400) {
+            alert("El archivo no puede superar los 25MB");
+            elem.value = "";
+            return;
+        }
+        label.classList.add('boton-adjuntar-cedula-activo')
+    }else {
+        label.classList.remove('boton-adjuntar-cedula-activo')
+    }
+}
+function validarBotonAutorizacion(elem) {
+    const terminosCondicionesdocument = document.getElementById('terminos_condiciones')
+    const boton = document.getElementById("btnAutorizacion")
+    if (boton.classList.contains("active")) {
+        terminosCondicionesdocument.value = "no-acepto"
+        boton.classList.remove('active');
+        // $("#div_terminos_y_condiciones_icono_pendiente").show();
+        // $("#div_terminos_y_condiciones_icono_completo").hide();
+    }
+    else {
+        terminosCondicionesdocument.value = "acepto"
+        boton.classList.add('active');
+        // $("#div_terminos_y_condiciones_icono_pendiente").hide();
+        // $("#div_terminos_y_condiciones_icono_completo").show();
+    }
+}
+function validarBotonAutorizacionCentrales(elem) {
+    const centralesDeRiesgo = document.getElementById('consulta_centrales_de_riesgo')
+    const btnNoAcepto = document.getElementById('btnNoCentralesRiesgo')
+    const btnSiAcepto = document.getElementById('btnSiCentralesRiesgo')
+    if(elem.innerText === "No acepto") {
+        if(btnNoAcepto.classList.contains("active")) {
+            centralesDeRiesgo.value = ''
+            btnNoAcepto.classList.remove('active');
+            btnSiAcepto.classList.remove('active');
+            // $("#div_centrales_riesgo_icono_pendiente").show();
+            // $("#div_centrales_riesgo_icono_completo").hide();                    
+        }else {
+            centralesDeRiesgo.value = 'no-acepto'
+            btnNoAcepto.classList.add('active');
+            btnSiAcepto.classList.remove('active');
+            // $("#div_centrales_riesgo_icono_pendiente").hide();
+            // $("#div_centrales_riesgo_icono_completo").show();
+        }                    
+    }else if(elem.innerText === "Acepto") {
+        if(btnSiAcepto.classList.add("active")) {
+            centralesDeRiesgo.value = ''
+            btnSiAcepto.classList.remove('active');
+            btnNoAcepto.classList.remove('active');
+            // $("#div_centrales_riesgo_icono_pendiente").show();
+            // $("#div_centrales_riesgo_icono_completo").hide();                    
+        }else {
+            centralesDeRiesgo.value = 'acepto'
+            btnSiAcepto.classList.add('active');
+            btnNoAcepto.classList.remove('active');
+            // $("#div_centrales_riesgo_icono_pendiente").hide();
+            // $("#div_centrales_riesgo_icono_completo").show();
+        }
+    }
+}

@@ -480,6 +480,12 @@ button .active {
     height: 120px;
   }
 }
+.boton-adjuntar-presionado {
+  background-image: url(../img/boton-adjuntar-cedula-presionado.svg) !important;
+}
+.boton-adjuntar-cedula-activo {
+  background-image: url(../img/boton-adjuntar-cedula-listo.svg) !important;
+}
 /* ---- */
 .hide {
   display: none;
