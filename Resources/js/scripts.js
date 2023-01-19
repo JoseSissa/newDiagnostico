@@ -1,7 +1,5 @@
-
-
-function mostrarModalTerminosCondiciones() {
-    const modalTerminosCondiciones = document.getElementById('modalTerminosYCondiciones')
+function mostrarModalTerminosCondiciones(id) {
+    const modalTerminosCondiciones = document.getElementById(id)
     if (modalTerminosCondiciones.classList.contains('hide')) {
         modalTerminosCondiciones.classList.remove('hide')
         modalTerminosCondiciones.classList.add('show')
