@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagnóstico CCTN</title>
     <link rel="stylesheet" href="Resources/css/style.css">
+    <script src="Resources/js/scripts.js" defer></script>
 </head>
 
 <body>
@@ -169,7 +170,7 @@
                         </p>
                     </div>
                     <div class="row d-flex justify-content-center" style="padding-top: 4px; text-align: center;">
-                        <a onclick="$('#modalTerminosYCondiciones').modal('toggle');"><u>Ver términos y condiciones</u></a>
+                        <a onclick="mostrarModalTerminosCondiciones()"><u>Ver términos y condiciones</u></a>
                     </div>
                     <div class="row d-flex justify-content-center centrar-boton" style="padding-top: 20px">
                         <input id="terminos_condiciones" name="terminos_condiciones" type="hidden" value="no-acepto">
@@ -217,6 +218,67 @@
 
             </div>
         </form>
+
+
+        <!-- Modal para los términos y condiciones -->
+        <div class="modal fade hide" style="overflow-y: scroll; -webkit-overflow-scrolling: touch; " data-backdrop="static" data-keyboard="false" id="modalTerminosYCondiciones" tabindex="-1" role="dialog" aria-labelledby="modalTitulo" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 900px !important" role="document">
+                <div class="modal-content" style="max-width: 900px" >
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitulo">Términos y condiciones</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <b>Protección de Datos Personales.</b> Yo <b><span id="proteccion_datos_nombre" name="proteccion_datos_nombre">NOMBRE Y</span> <span id="proteccion_datos_primer_apellido" name="proteccion_datos_primer_apellido">APELLIDO SOLICITANTE</span> <span id="proteccion_datos_segundo_apellido" name="proteccion_datos_segundo_apellido"></span></b>
+                            en mi calidad de titular de la información, por medio de la presente, manifiesto mi consentimiento previo, libre, expreso e informado para que
+                            Vanka S.A.S. (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio) o a quien represente sus derechos para tratar, consultar, solicitar, procesar, reportar y divulgar los datos personales por mi
+                            suministrados, conforme su Política de Tratamiento de Datos Personales y finalidades indicadas. De igual forma, manifiesto que Vanka S.A.S. (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio), de
+                            manera clara y expresa, me informó de lo siguiente: (1) los datos personales que serán recolectados o que han sido recolectados; (2) las
+                            finalidades específicas del tratamiento de los datos personales recolectados y para los cuales se obtiene el consentimiento; (3) el tratamiento
+                            al cual serán sometidos los datos personales y las Políticas para el Tratamiento de Datos Personales, así como el lugar en donde puedo consultar
+                            las Políticas y/o solicitar copia de la misma; (4) el carácter facultativo de la respuesta a las preguntas que le sean hechas, cuando estas
+                            versen sobre datos sensibles o sobre los datos de las niñas, niños y adolescentes; (5) los derechos que me asisten como titular y el
+                            procedimiento para su ejercicio; (6) la identificación, dirección física o electrónica y teléfono del Responsable del Tratamiento. Lo anterior
+                            en base a las leyes 1712 de 2014 y 1377 de 2013.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="boton-formulario active" type="button" data-dismiss="modal" onclick="mostrarModalTerminosCondiciones()">Regresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Consulta en centrales de riesgo -->
+        <div class="modal fade hide" style="overflow-y: scroll; -webkit-overflow-scrolling: touch; " data-backdrop="static" data-keyboard="false" id="modalConsultaCentrales" tabindex="-1" role="dialog" aria-labelledby="modalTitulo" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: 900px !important" role="document">
+                <div class="modal-content" style="max-width: 900px" >
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitulo">Consulta en centrales de riesgo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <b>Consulta en centrales de riesgo.</b> Yo <b><span id="consulta_centrales_nombre" name="consulta_centrales_nombre">NOMBRE Y</span> <span id="consulta_centrales_primer_apellido" name="consulta_centrales_primer_apellido">APELLIDO SOLICITANTE</span> <span id="consulta_centrales_segundo_apellido" name="consulta_centrales_segundo_apellido"></span></b>
+                            autorizo, de forma expresa, informada y consentida a Vanka S.A.S. (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio) o a quien represente sus derechos, para que adelante las consultas que sean
+                            necesarias en las bases o bancos de datos propias o de centrales de riesgo (desacredito, cifin, entre otras y similares) relativas a mi
+                            comportamiento comercial, crediticio y el manejo de los diferentes productos de las entidades financieras, solidarias, del sector real y
+                            similares que tenga y, en general, sobre el cumplimiento de todas las obligaciones de carácter pecuniario a mi cargo. Igualmente, autorizo a
+                            Vanka S.A.S. (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio) para que haga los reportes pertinentes a las centrales de riesgos existentes o que llegaren a existir, de datos, tratados o sin
+                            tratar, tanto sobre el cumplimiento oportuno como sobre el incumplimiento, si lo hubiera, de las obligaciones, o de los deberes legales o
+                            contractuales de contenido patrimonial cuando quiera que incurra en mora en el pago de mis obligaciones con Vanka S.A.S. (aliado de 5T SAS y Cámara de Comercio de Bucaramanga para el programa Creciendo con tu Negocio).
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="boton-formulario active" type="button" data-dismiss="modal" >Regresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
