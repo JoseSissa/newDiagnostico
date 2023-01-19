@@ -99,7 +99,7 @@ echo "</pre>";
                                 <option selected>-Escoge-</option>
                                 <?php
                                 for ($i = 0; $i < sizeof($listado_ciudades); $i++) {
-                                    echo '<option value="' . $listado_ciudades[$i]['codigo'] . '" ';
+                                    echo '<option value="' . $listado_ciudades[$i]['ciudad'] .' - '. $listado_ciudades[$i]['departamento'] . '" ';
                                     echo ' >' . mb_convert_case($listado_ciudades[$i]['ciudad'], MB_CASE_TITLE, "UTF-8") . ' (' . mb_convert_case($listado_ciudades[$i]['departamento'], MB_CASE_TITLE, "UTF-8") . ')</option>';
                                 }
                                 ?>

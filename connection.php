@@ -29,6 +29,5 @@ class Connection {
 		}
 		
         return $json;
-        // return json_encode($json);
     }
 };
