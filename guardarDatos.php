@@ -35,24 +35,12 @@ print_r($_FILES['adjuntar_declaracion_renta']);
 echo "</pre>";
 $consulta_centrales_de_riesgo = $_POST['consulta_centrales_de_riesgo'];
 
-$con = mysqli_connect($server, $user, $password, $database);
+if($valor_solicitado === "") {
+    header("Status: 301 Moved Permanently");
+    header("Location: https://localhost/newDiagnostico/si.html");
+}
 
-echo "<pre>";
-echo "valor_solicitado: ", $valor_solicitado, "<br>";
-echo "plazo: ", $plazo, "<br>";
-echo "destino_credito: ", $destino_credito, "<br>";
-echo "nombre_empresa: ", $nombre_empresa, "<br>";
-echo "nit: ", $nit, "<br>";
-echo "direccion_empresa: ", $direccion_empresa, "<br>";
-echo "ciudad_empresa: ", $ciudad_empresa, "<br>";
-echo "numero_contacto_empresa: ", $numero_contacto_empresa, "<br>";
-echo "antiguedad_empresa: ", $antiguedad_empresa, "<br>";
-echo "migrante_retornado: ", $migrante_retornado, "<br>";
-echo "adjuntar_balance_general: ", $adjuntar_balance_general, "<br>";
-echo "adjuntar_estado_de_resultado: ", $adjuntar_estado_de_resultado, "<br>";
-echo "adjuntar_declaracion_renta: ", $adjuntar_declaracion_renta, "<br>";
-echo "consulta_centrales_de_riesgo;: ", $consulta_centrales_de_riesgo, "<br>";
-echo "</pre>";
+$con = mysqli_connect($server, $user, $password, $database);
 
 $filenameBalanceGeneral = "documento_BalanceGeneral" . "_" . $nit . "_" . date("Y_m_d_H_i_s");
 $filenameEstadoResultado = "documento_EstadoResultado"  . "_" . $nit . "_" . date("Y_m_d_H_i_s");
@@ -95,8 +83,8 @@ if ($uploadOk == 0){
 
 $query = "INSERT INTO empresas (id, valor_solicitado, plazo, destino_credito, nombre_empresa, nit, direccion_empresa, ciudad_empresa, numero_contacto_empresa, antiguedad_empresa, migrante_retornado, adjuntar_balance_general, adjuntar_estado_de_resultado, adjuntar_declaracion_renta, consulta_centrales_de_riesgo) VALUES (null, '$valor_solicitado', '$plazo', '$destino_credito', '$nombre_empresa', '$nit', '$direccion_empresa', '$ciudad_empresa', '$numero_contacto_empresa', '$antiguedad_empresa', '$migrante_retornado', '$locationBG', '$locationER', '$locationDR', '$consulta_centrales_de_riesgo')";
 
-$datos = mysqli_query($con, $query);
+// $datos = mysqli_query($con, $query);
 
-return $datos;
+// echo $datos;
 
 ?>

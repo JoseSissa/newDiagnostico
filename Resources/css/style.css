@@ -337,6 +337,31 @@ button .active {
   color: white !important;
   border: 1px solid transparent;
 }
+.datosGuardados, .textoDatosGuardados h3{
+  font-size: 16px;
+}
+.textoDatosGuardados {
+  display: flex;
+  justify-content: center;
+}
+.textoDatosGuardados h3{
+  text-align: center;
+  display: inline-block;
+  font-weight: 300;
+}
+.caja-mensaje {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.volverFormulario {
+  margin-top: 50px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #32CD32;
+  color: #FFF;
+  border: none;
+  outline: none;
+}
 @media (min-width: 500px) {
   .campo-ciudad {
     width: 100%;
@@ -367,6 +392,9 @@ button .active {
   }
 }
 @media (min-width: 768px) {
+  .datosGuardados, .textoDatosGuardados h3{
+    font-size: 20px;
+  }
   form {
     max-width: 720px;
   }
@@ -486,6 +514,7 @@ button .active {
 .boton-adjuntar-cedula-activo {
   background-image: url(../img/boton-adjuntar-cedula-listo.svg) !important;
 }
+
 /* ---- */
 .hide {
   display: none;
