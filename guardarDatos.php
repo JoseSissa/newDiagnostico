@@ -22,11 +22,17 @@ $numero_contacto_empresa = $_POST['numero_contacto_empresa'];
 $antiguedad_empresa = $_POST['antiguedad_empresa'];
 $migrante_retornado = $_POST['migrante_retornado'];
 $adjuntar_balance_general = "Probando los archivos 1";
-// $_POST['adjuntar_balance_general'];
+echo "<pre>";
+print_r($_FILES['adjuntar_balance_general']);
+echo "</pre>";
 $adjuntar_estado_de_resultado = "Probando los archivos 2";
-// $_POST['adjuntar_estado_de_resultado'];
+echo "<pre>";
+print_r($_FILES['adjuntar_estado_de_resultado']);
+echo "</pre>";
 $adjuntar_declaracion_renta = "Probando los archivos 3";
-// $_POST['adjuntar_declaracion_renta'];
+echo "<pre>";
+print_r($_FILES['adjuntar_declaracion_renta']);
+echo "</pre>";
 $consulta_centrales_de_riesgo = $_POST['consulta_centrales_de_riesgo'];
 
 $con = mysqli_connect($server, $user, $password, $database);
@@ -47,8 +53,47 @@ echo "adjuntar_estado_de_resultado: ", $adjuntar_estado_de_resultado, "<br>";
 echo "adjuntar_declaracion_renta: ", $adjuntar_declaracion_renta, "<br>";
 echo "consulta_centrales_de_riesgo;: ", $consulta_centrales_de_riesgo, "<br>";
 echo "</pre>";
-    
-$query = "INSERT INTO empresas (id, valor_solicitado, plazo, destino_credito, nombre_empresa, nit, direccion_empresa, ciudad_empresa, numero_contacto_empresa, antiguedad_empresa, migrante_retornado, adjuntar_balance_general, adjuntar_estado_de_resultado, adjuntar_declaracion_renta, consulta_centrales_de_riesgo) VALUES (null, '$valor_solicitado', '$plazo', '$destino_credito', '$nombre_empresa', '$nit', '$direccion_empresa', '$ciudad_empresa', '$numero_contacto_empresa', '$antiguedad_empresa', '$migrante_retornado', '$adjuntar_balance_general', '$adjuntar_estado_de_resultado', '$adjuntar_declaracion_renta', '$consulta_centrales_de_riesgo')";
+
+$filenameBalanceGeneral = "documento_BalanceGeneral" . "_" . $nit . "_" . date("Y_m_d_H_i_s");
+$filenameEstadoResultado = "documento_EstadoResultado"  . "_" . $nit . "_" . date("Y_m_d_H_i_s");
+$filenamedeclaracionRenta = "documento_DeclaracionRenta" . "_" . $nit . "_" . date("Y_m_d_H_i_s");
+
+$uploadOk = 1;
+
+$locationBG = "Uploaded/BalanceGeneral/" . $filenameBalanceGeneral;
+$locationER = "Uploaded/EstadoResultado/" . $filenameEstadoResultado;
+$locationDR = "Uploaded/DeclaracionRenta/" . $filenamedeclaracionRenta;
+
+$imageFileTypeBG = pathinfo($_FILES['adjuntar_balance_general']['name'], PATHINFO_EXTENSION);
+$imageFileTypeER = pathinfo($_FILES['adjuntar_estado_de_resultado']['name'], PATHINFO_EXTENSION);
+$imageFileTypeDC = pathinfo($_FILES['adjuntar_declaracion_renta']['name'], PATHINFO_EXTENSION);
+
+$valid_extensions = array("jpg","jpeg","png","pdf","xlsx");
+if ( !in_array(strtolower($imageFileTypeBG),$valid_extensions) ) {
+    $uploadOk = 0;
+}
+if ( !in_array(strtolower($imageFileTypeER),$valid_extensions) ) {
+    $uploadOk = 0;
+}
+if ( !in_array(strtolower($imageFileTypeDC),$valid_extensions) ) {
+    $uploadOk = 0;
+}
+
+$locationBG = $locationBG . "." . $imageFileTypeBG;
+$locationER = $locationER . "." . $imageFileTypeER;
+$locationDR = $locationDR . "." . $imageFileTypeDC;
+
+if ($uploadOk == 0){
+    return 0;
+}else {
+    move_uploaded_file($_FILES['adjuntar_balance_general']['tmp_name'], $locationBG);
+    move_uploaded_file($_FILES['adjuntar_estado_de_resultado']['tmp_name'], $locationER);
+    move_uploaded_file($_FILES['adjuntar_declaracion_renta']['tmp_name'], $locationDR);
+}
+
+
+
+$query = "INSERT INTO empresas (id, valor_solicitado, plazo, destino_credito, nombre_empresa, nit, direccion_empresa, ciudad_empresa, numero_contacto_empresa, antiguedad_empresa, migrante_retornado, adjuntar_balance_general, adjuntar_estado_de_resultado, adjuntar_declaracion_renta, consulta_centrales_de_riesgo) VALUES (null, '$valor_solicitado', '$plazo', '$destino_credito', '$nombre_empresa', '$nit', '$direccion_empresa', '$ciudad_empresa', '$numero_contacto_empresa', '$antiguedad_empresa', '$migrante_retornado', '$locationBG', '$locationER', '$locationDR', '$consulta_centrales_de_riesgo')";
 
 $datos = mysqli_query($con, $query);
 

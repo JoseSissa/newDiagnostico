@@ -31,7 +31,6 @@ function verificarDatosFormulario(event) {
     const keys = Object.keys(data)
     let controlFormulario = 0
     for (const elem of keys) {
-        console.log(elem);
         if(elem === 'ciudad_empresa') {
             if(data[elem] === '-Escoge-' || data[elem] === '' || data[elem] === ' ') {
                 controlFormulario++
@@ -92,25 +91,7 @@ function verificarDatosFormulario(event) {
     }
     controlFormulario === 0 
         ? document.getElementById("mainForm").submit()
-        : console.log(`No se puede enviar ${controlFormulario}`);
-
-        // $.ajax({
-        //     type: 'POST',
-        //     url: 'guardar_datos_nuevo_formulario',
-        //     // data:  $(mainForm).serialize(),
-        //     data:  JSON.stringify(data),
-        //     success: function (datas) {
-        //         console.log('Data de regreso success')
-        //         console.log(JSON.stringify(datas));                            
-        //     },
-        //     complete: function (datas) {
-        //         // if (data.responseText != "success") {
-        //         //     console.log("Error al registrar los datos");
-        //         // }
-        //         console.log('Data de regreso complete');
-        //         console.log(JSON.stringify(datas));
-        //     }
-        // });
+        : null;
 }
 const modalParaLosMensajes = document.getElementById('modalParalosMensajes')
 const textoDimanico = document.getElementById('texto-dinamico')

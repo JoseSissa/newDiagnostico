@@ -17,6 +17,7 @@ echo "</pre>";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diagnóstico CCTN</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,400,500,700&display=swap">
     <link rel="stylesheet" href="Resources/css/style.css">
     <script src="Resources/js/scripts.js" defer></script>
 </head>
