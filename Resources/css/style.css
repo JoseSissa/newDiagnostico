@@ -1,5 +1,4 @@
 * {
-  /*font-family: "Poppins", "Mulish", sans-serif !important;*/
   font-family: "Poppins", "Mulish", sans-serif !important;
   box-sizing: border-box;
   padding: 0;
@@ -9,6 +8,7 @@
 body {
   background-color: #EDEDED !important;
   color: #3C3C3B !important;
+  line-height: 1.5;
 }
 form {
   max-width: 900px;
@@ -59,72 +59,6 @@ form {
     background-position: 70% 50%;
   }
 }
-@media (min-width: 500px) {
-  .campo-ciudad {
-    width: 100%;
-  }
-  .imagenes-logos img:nth-child(1) {
-    width: 111px;
-    height: 43px;
-  }
-  .imagenes-logos img:nth-child(2) {
-    width: 111px;
-    height: 85px;
-  }
-  .imagenes-logos img:nth-child(3) {
-    height: 111px;
-    width: 55px;
-  }
-  .imagenes-logos img:nth-child(4) {
-    width: 110px;
-    height: 120px;
-  }
-}
-@media (min-width: 768px) {
-  .campo-ciudad {
-    width: 300px;
-    margin-left: 30px;
-  }
-  .imagenes-logos img:nth-child(1) {
-    width: 160px;
-    height: 62px;
-  }
-  .imagenes-logos img:nth-child(2) {
-    width: 160px;
-    height: 123px;
-  }
-  .imagenes-logos img:nth-child(3) {
-    height: 160px;
-    width: 80px;
-  }
-  .imagenes-logos img:nth-child(4) {
-    width: 110px;
-    height: 120px;
-  }
-}
-@media (min-width: 992px) {
-  .campo-ciudad {
-    width: 330px;
-    margin-left: 0px;
-  }
-  .imagenes-logos img:nth-child(1) {
-    width: 206px;
-    height: 81px;
-  }
-  .imagenes-logos img:nth-child(2) {
-    width: 206px;
-    height: 159px;
-  }
-  .imagenes-logos img:nth-child(3) {
-    height: 206px;
-    width: 103px;
-  }
-  .imagenes-logos img:nth-child(4) {
-    width: 110px;
-    height: 120px;
-  }
-}
-
 
 
 /* ----------------------- */
@@ -171,6 +105,7 @@ form {
   font-size: 20px;
   font-weight: bold;
   padding: 0 48px;
+  color: #3C3C3B;
 }
 .row {
   display: flex;
@@ -224,4 +159,236 @@ select:focus {
   background-color: #fff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.boton-adjuntar-cedula {
+  /* background-image: url(../img/boton-adjuntar-cedula.svg) !important; */
+  background-color: transparent;
+  background-size: 100% 100%;
+  /* background-attachment: scroll; */
+  width: auto;
+  display: inline-block;
+  color: white !important;
+  font-weight: bold;
+  padding: 12px 8px 12px 8px;
+  cursor: pointer;
+  text-transform: none !important;
+  text-align: center;
+  /* transform: translate(15%, 0); */
+}
+.boton-adjuntar-estados-financieros {
+  white-space: nowrap;
+  width: 250px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.boton-adjuntar-estados-financieros p {
+  margin: 0 8px 0 0;
+}
+input[type=file] {
+  display: none;
+}
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+}
+.boton-formulario {
+  border-radius: 25px;
+  margin: 0 10px 40px 10px;
+  word-wrap: break-word;
+  white-space: normal;
+  cursor: pointer;
+  display: inline-block;
+  color: #3C3C3B;
+  text-align: center;
+  vertical-align: middle;
+  background-color: transparent;
+  border: 1px solid #3C3C3B;
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
+  width: 180px;
+  font-size: inherit;
+}
+.centrar-boton {
+  align-items: center;
+  justify-content: center;
+}
+.centrales-riesgo-botones {
+  display: flex;
+  align-items: center;
+}
+.boton-siguiente {
+  background-color: transparent;
+  background-size: 100% 100%;
+  width: 160px !important;
+  height: 48px !important;
+  font-size: 1.2rem;
+  display: inline-block;
+  color: #3C3C3B !important;
+  font-weight: bold;
+  padding: 6px 30px 6px 30px;
+  cursor: pointer;
+  text-transform: none !important;
+  text-align: center;
+  border-radius: 25px;
+  border: 1px solid #3C3C3B;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+@media (min-width: 500px) {
+  .campo-ciudad {
+    width: 100%;
+  }
+  .imagenes-logos img:nth-child(1) {
+    width: 111px;
+    height: 43px;
+  }
+  .imagenes-logos img:nth-child(2) {
+    width: 111px;
+    height: 85px;
+  }
+  .imagenes-logos img:nth-child(3) {
+    height: 111px;
+    width: 55px;
+  }
+  .imagenes-logos img:nth-child(4) {
+    width: 110px;
+    height: 120px;
+  }
+}
+@media (min-width: 576px) {
+  form {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  form {
+    max-width: 720px;
+  }
+  #div_tipo_persona .deudor-caja .row > div:first-child,
+  #div_tipo_persona .deudor-caja .row > div:nth-child(2) {
+    max-width: 180px;
+    min-width: 180px;
+  }
+  #div_tipo_persona .row, #div_datos_empresariales .row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(1),
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(3),
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(5),
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(7)
+  {
+    max-width: 330px;
+    min-width: 330px;
+  }
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(2) {
+    display: grid;
+    align-items: end;
+  }
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(2),
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(4),
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(6) {
+    max-width: 250px;
+    min-width: 250px;
+  }
+  
+  .campo-ciudad {
+    width: 300px;
+  }
+  .imagenes-logos img:nth-child(1) {
+    width: 160px;
+    height: 62px;
+  }
+  .imagenes-logos img:nth-child(2) {
+    width: 160px;
+    height: 123px;
+  }
+  .imagenes-logos img:nth-child(3) {
+    height: 160px;
+    width: 80px;
+  }
+  .imagenes-logos img:nth-child(4) {
+    width: 110px;
+    height: 120px;
+  }
+  .centrales-riesgo-botones {
+    display: block;
+    text-align: center;
+  }
+}
+@media (min-width: 992px) {
+  form {
+    max-width: 960px;
+  }
+  #div_tipo_persona .deudor-caja .row > div:nth-child(3) {
+    max-width: 480px;
+    min-width: 480px;
+  }
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(3) {
+    display: grid;
+    align-items: end;
+  }
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(4),
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(6) {
+    max-width: 330px;
+    min-width: 330px;
+  }
+  #div_datos_empresariales .deudor-caja .row > div:nth-child(5) {
+    max-width: 250px;
+    min-width: 250px;
+  }
+  #div_informacion_financiera_persona_juridica .row {
+    flex-direction: row;
+  }
+  #div_informacion_financiera_persona_juridica .row > div{
+    height: 144px;
+  }
+  #div_informacion_financiera_persona_juridica .deudor-caja div:first-child {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  #div_informacion_financiera_persona_juridica .deudor-caja div span {
+    display: inline-block;
+    width: 100%;
+  }
+  .campo-ciudad {
+    width: 330px;
+    margin-left: 0px;
+  }
+  .imagenes-logos img:nth-child(1) {
+    width: 206px;
+    height: 81px;
+  }
+  .imagenes-logos img:nth-child(2) {
+    width: 206px;
+    height: 159px;
+  }
+  .imagenes-logos img:nth-child(3) {
+    height: 206px;
+    width: 103px;
+  }
+  .imagenes-logos img:nth-child(4) {
+    width: 110px;
+    height: 120px;
+  }
 }
