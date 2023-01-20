@@ -3,10 +3,6 @@
 include './connection.php';
 $connection = new Connection();
 $listado_ciudades = $connection->obtDatos();
-// echo gettype($listado_ciudades);
-echo "<pre>";
-// var_dump($listado_ciudades);
-echo "</pre>";
 
 ?>
 <!DOCTYPE html>
@@ -146,7 +142,7 @@ echo "</pre>";
                         <div style="display: flex; flex-direction: column; justify-content: space-between; max-width: 250px;">
                             <p>Balance general (del año 2022 o del último año que se tenga)</p>
                             <label class="boton-adjuntar-cedula boton-adjuntar-estados-financieros" style="background-image: url(Resources/img/boton-adjuntar-cedula.svg)" id="adjuntar_estados_financieros_label" name="adjuntar_estados_financieros_label" for="adjuntar_balance_general" ><p>Balance general</p><img class="boton-adjuntar-cedula-icono-adjuntar" style="height: 70% !important; " id="adjuntar_estados_financieros_icono_adjuntar" name="adjuntar_estados_financieros_icono_adjuntar" src="Resources/img/icono-adjuntar.svg" /></label>
-                            <input id="adjuntar_balance_general" name="adjuntar_balance_general" type="file" accept="image/*, application/pdf" onclick="animacionBotonAdjuntarAlPresionar('adjuntar_estados_financieros_label')"
+                            <input id="adjuntar_balance_general" name="adjuntar_balance_general" type="file" accept="image/*, application/pdf, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onclick="animacionBotonAdjuntarAlPresionar('adjuntar_estados_financieros_label')"
                             onchange="validarDocumentos(this, 'adjuntar_estados_financieros_label')" required >
                         </div>
                         <div style="display: flex; flex-direction: column; justify-content: space-between; max-width: 250px;">
