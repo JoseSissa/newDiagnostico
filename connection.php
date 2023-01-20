@@ -17,7 +17,7 @@ class Connection {
         if ($con->connect_error) {
             die("Error al conectar con la db: " . $con->connect_error);
         }
-        $query = "SELECT * FROM ciudades ORDER BY ciudad ASC";
+        $query = "SELECT * FROM ciudades WHERE departamento='SANTANDER' ORDER BY ciudad ASC;";
         $datos = mysqli_query($con, $query);
 
         while($row = mysqli_fetch_assoc($datos)){
