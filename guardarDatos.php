@@ -76,7 +76,7 @@ $datos = mysqli_query($con, $query);
 
 if($datos) {
     header("Status: 301 Moved Permanently");
-    header("Location: https://localhost/diagnosticoCCTN/confirmacion.html");
+    header("Location: https://cincot.com/diagnosticoCCTN//confirmacion.html");
 }
 
 ?>
