@@ -31,41 +31,52 @@ $consulta_centrales_de_riesgo = $_POST['consulta_centrales_de_riesgo'];
 
 $con = mysqli_connect($server, $user, $password, $database);
 
-$filenameBalanceGeneral = "documento_BalanceGeneral" . "_" . $nit . "_" . date("Y_m_d_H_i_s");
-$filenameEstadoResultado = "documento_EstadoResultado"  . "_" . $nit . "_" . date("Y_m_d_H_i_s");
-$filenamedeclaracionRenta = "documento_DeclaracionRenta" . "_" . $nit . "_" . date("Y_m_d_H_i_s");
-
 $uploadOk = 1;
 
-$locationBG = "Uploaded/BalanceGeneral/" . $filenameBalanceGeneral;
-$locationER = "Uploaded/EstadoResultado/" . $filenameEstadoResultado;
-$locationDR = "Uploaded/DeclaracionRenta/" . $filenamedeclaracionRenta;
-
-$imageFileTypeBG = pathinfo($_FILES['adjuntar_balance_general']['name'], PATHINFO_EXTENSION);
-$imageFileTypeER = pathinfo($_FILES['adjuntar_estado_de_resultado']['name'], PATHINFO_EXTENSION);
-$imageFileTypeDC = pathinfo($_FILES['adjuntar_declaracion_renta']['name'], PATHINFO_EXTENSION);
+$filenameBalanceGeneral = "";
+$filenameEstadoResultado = "";
+$filenamedeclaracionRenta = "";
 
 $valid_extensions = array("jpg","jpeg","png","pdf","xlsx");
-if ( !in_array(strtolower($imageFileTypeBG),$valid_extensions) ) {
-    $uploadOk = 0;
-}
-if ( !in_array(strtolower($imageFileTypeER),$valid_extensions) ) {
-    $uploadOk = 0;
-}
-if ( !in_array(strtolower($imageFileTypeDC),$valid_extensions) ) {
-    $uploadOk = 0;
-}
 
-$locationBG = $locationBG . "." . $imageFileTypeBG;
-$locationER = $locationER . "." . $imageFileTypeER;
-$locationDR = $locationDR . "." . $imageFileTypeDC;
+if($_FILES['adjuntar_balance_general']['name'] !== "") {
+    $filenameBalanceGeneral = "documento_BalanceGeneral" . "_" . $nit . "_" . date("Y_m_d_H_i_s");
+    $locationBG = "Uploaded/BalanceGeneral/" . $filenameBalanceGeneral;
+    $imageFileTypeBG = pathinfo($_FILES['adjuntar_balance_general']['name'], PATHINFO_EXTENSION);
+    if ( !in_array(strtolower($imageFileTypeBG),$valid_extensions) ) {
+        $uploadOk = 0;
+    }
+    $locationBG = $locationBG . "." . $imageFileTypeBG;
+    if ($uploadOk !== 0){
+        move_uploaded_file($_FILES['adjuntar_balance_general']['tmp_name'], $locationBG);
+    }
+}
+if($_FILES['adjuntar_estado_de_resultado']['name'] !== "") {
+    $filenameEstadoResultado = "documento_EstadoResultado"  . "_" . $nit . "_" . date("Y_m_d_H_i_s");
+    $locationER = "Uploaded/EstadoResultado/" . $filenameEstadoResultado;
+    $imageFileTypeER = pathinfo($_FILES['adjuntar_estado_de_resultado']['name'], PATHINFO_EXTENSION);
+    if ( !in_array(strtolower($imageFileTypeER),$valid_extensions) ) {
+        $uploadOk = 0;
+    }
+    $locationER = $locationER . "." . $imageFileTypeER;
+    if ($uploadOk !== 0) {
+        move_uploaded_file($_FILES['adjuntar_estado_de_resultado']['tmp_name'], $locationER);
+    }
 
-if ($uploadOk == 0){
-    return 0;
-}else {
-    move_uploaded_file($_FILES['adjuntar_balance_general']['tmp_name'], $locationBG);
-    move_uploaded_file($_FILES['adjuntar_estado_de_resultado']['tmp_name'], $locationER);
-    move_uploaded_file($_FILES['adjuntar_declaracion_renta']['tmp_name'], $locationDR);
+}
+if($_FILES['adjuntar_declaracion_renta']['name'] !== "") {
+    $filenamedeclaracionRenta = "documento_DeclaracionRenta" . "_" . $nit . "_" . date("Y_m_d_H_i_s");
+    $locationDR = "Uploaded/DeclaracionRenta/" . $filenamedeclaracionRenta;
+    $imageFileTypeDC = pathinfo($_FILES['adjuntar_declaracion_renta']['name'], PATHINFO_EXTENSION);
+    if ( !in_array(strtolower($imageFileTypeDC),$valid_extensions) ) {
+        $uploadOk = 0;
+    }
+    $locationDR = $locationDR . "." . $imageFileTypeDC;
+    if ($uploadOk == 0){
+        return 0;
+    }else {
+        move_uploaded_file($_FILES['adjuntar_declaracion_renta']['tmp_name'], $locationDR);
+    }
 }
 
 
