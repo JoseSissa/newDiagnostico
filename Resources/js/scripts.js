@@ -48,30 +48,6 @@ function verificarDatosFormulario(event) {
                 document.getElementById('btnSiguiente').removeAttribute('disabled')
                 break;
             }
-        }else if(elem === 'adjuntar_balance_general') {
-            if(data[elem].name === "") {
-                controlFormulario++
-                const mensaje = 'Por favor, adjunte archivo de Balance general.'
-                mostrarModalMensajes(mensaje)
-                document.getElementById('btnSiguiente').removeAttribute('disabled')
-                break;
-            }
-        }else if(elem === 'adjuntar_estado_de_resultado') {
-            if(data[elem].name === "") {
-                controlFormulario++
-                const mensaje = 'Por favor, adjunte archivo de Estado de resultado.'
-                mostrarModalMensajes(mensaje)
-                document.getElementById('btnSiguiente').removeAttribute('disabled')
-                break;
-            }
-        }else if(elem === 'adjuntar_declaracion_renta') {
-            if(data[elem].name === "") {
-                controlFormulario++
-                const mensaje = 'Por favor, adjunte archivo de Declaración de renta.'
-                mostrarModalMensajes(mensaje)
-                document.getElementById('btnSiguiente').removeAttribute('disabled')
-                break;
-            }
         }else if(elem === 'terminos_condiciones') {
             if(data[elem] === "" || data[elem] === "no-acepto") {
                 controlFormulario++
